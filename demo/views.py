@@ -12,17 +12,7 @@ import os
 import yellow
 from decimal import Decimal
 
-# This file contains a simple examples for how a merchant might communicate
-# with Yellow as part of their shopping cart. There are three functions:
-# 'create': create an invoice
-# 'ipn': respond to Instant Payment Notification requests
-# 'get_signature': sign a request so it will be accepted by Yellow
-
 def create(request):
-    ''' Fabricated example that prompts a user for a national currency base
-        price and creates the corresponding BTC invoice. A non-demo site would
-        likely calculate the base price based on the value of the current
-        shopping cart.'''
     api_key = os.environ["API_KEY"]
     api_secret = os.environ["API_SECRET"]
     data = yellow.create_invoice(api_key,
