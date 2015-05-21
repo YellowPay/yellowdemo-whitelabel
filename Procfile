@@ -1,1 +1,1 @@
-web: gunicorn yellowdemo.wsgi
+web: gunicorn yellowdemo-whitelabel.wsgi
