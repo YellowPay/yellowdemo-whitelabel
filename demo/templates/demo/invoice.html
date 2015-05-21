@@ -1,0 +1,48 @@
+{% load staticfiles %}
+
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <!-- A barebones implementation of a payment widget. This example is
+         purposefully unstyled and minimal - the hope is that a minimal
+         example will provide an easy-to-extend example for any merchants
+         who wish to white-label our solution -->
+    <div id="yellow-widget" style="display: none;">
+      <!-- Displays a widget ready to accept payment -->
+      <ul>
+        <li>Payment address: <span id="yellow-address">{{ address }}</span>
+        <li>Bitcoin owed: <span id="yellow-amount">{{ remaining }}</span> BTC
+        <li>Original invoice amount: {{ base_price }} {{ base_ccy }}
+        <li>Bitcoin URI: <span id="yellow-uri"></span>
+        <li>Invoice status: <span id="yellow-status">{{ status }}</span>
+        <li>Timer: <span id="yellow-timer">--</span>
+        <li><span id="yellow-qr"></span></a>
+      </ul>
+    </div>
+    <div id="yellow-refund" style="display: none;">
+      <!-- Incorrect payment has been received, provide a form for the 
+           customer to request a refund -->
+      Incorrect payment received! We're sorry, this order cannot be completed. Please enter your information below for a full refund.
+      <form id="yellow-refund-form" action="https://api-fkn502.ngrok.io/client/refund/{{ id }}/" method="post">
+        <input id="id_address" class="form-control" name="address" type="text" placeholder="bitcoin address for your refund" required/>
+        <input id="id_email" class="form-control" name="email" type="email" placeholder="email address" required/>
+        <button id="id_button" type="submit">get full refund</button>
+      </form>  
+    </div>
+    <div id="yellow-expired" style="display: none;">
+      <!-- Invoice has expired -->
+      Invoice expired. Please place your order again.
+    </div>
+    <script>
+      // Values provided by the server but needed by invoice.js
+      var invoiceId = "{{ id }}";
+      var address = "{{ address }}";
+    </script>
+    <script src="//code.jquery.com/jquery-1.11.3.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.3/jquery.xdomainrequest.min.js"></script>
+    <script src="{% static "demo/js/invoice.js" %}"></script>
+  </body>
+</html>
