@@ -1,34 +1,13 @@
-Yellow Demo
-==========
+White Label Demo
+================
 
-Demo code for creating and monitoring Yellow invoices using our Python SDK.
+This project provides a sample implementation of a Yellow payment widget.
 
-This is a simple Django server with two pages:
+This sample is intended to be a barebones implementation - there's no styling and we've made sacrifices in performance/functionality/code-style in order to present as minimal an implementation as possible. Hopefully it illustrates the core elements of building a white label solution, and provides a base off which you can build your own more sophisticated version.
 
-1. A page to create an invoice in USD or AED
-2. A page to display the embedded invoice widget
+Although the sample is written in python/Django it is largely language/framework agnostic. The most relevant parts are in HTML and javascript. In particular these 3 files:
+* [views.py](https://github.com/YellowPay/yellowdemo-whitelabel/blob/master/demo/views.py)
+* [invoice.html](https://github.com/YellowPay/yellowdemo-whitelabel/blob/master/demo/templates/demo/invoice.html)
+* [invoice.js](https://github.com/YellowPay/yellowdemo-whitelabel/blob/master/demo/static/demo/js/invoice.js)
 
-
-This demo server just prints to the terminal when the invoice status changes - a real shopping cart integration would likely update an order management system and redirect customers to an order confirmation page.
-
-Code comments contain additional documentation. For any other questions please email info@yellowpay.co
-
-Thanks for using Yellow!
-
-Setup Instructions
-==================
-
-* Create a python virtual environment and activate it
-* Install [ngrok](https://ngrok.com) and run it, point it at local port 8080. Make note of the URL ngrok gives you.
-* Within the root directory of yellowdemo, type:
-```
-pip install -r requirements.txt
-```
-* open the `env.sh` file and add your `API_KEY`, `API_SECRET` and `DEMO_HOST`. Then source the file with the following command:
-```
-source env.sh
-```
-* Run the server!
-```
-python manage.py runserver 127.0.0.1:8080
-```
+For more information on styling your own payment widget, check out our api docs: http://yellowpay.co/docs/api
